@@ -107,8 +107,15 @@ else:
 # =====================================================
 # Load model and base data
 # =====================================================
-model = pickle.load(open("models/72_Cat_Boost_Regressor.pkl", "rb"))
-df_base = pd.read_parquet("data/processed/df.parquet")
+# Project paths
+APP_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(APP_DIR)
+
+MODEL_PATH = os.path.join(PROJECT_ROOT, "models", "72_Cat_Boost_Regressor.pkl")
+DATA_PATH = os.path.join(PROJECT_ROOT, "data", "processed", "df.parquet")
+
+model = pickle.load(open(MODEL_PATH, "rb"))
+df_base = pd.read_parquet(DATA_PATH)
 
 # Ensure year/week_start in df_base (historical data is assumed to be 2025)
 if "year" not in df_base.columns:
@@ -127,8 +134,7 @@ if "week_start" not in df_base.columns:
     df_base["week_end"] = df_base["week_start"] + pd.Timedelta(days=6)
 
 # Build absolute JSON path relative to this script
-base_dir = os.path.dirname(os.path.abspath(__file__))
-json_path = os.path.join(base_dir, "..", "models", "category_keywords.json")
+json_path = os.path.join(PROJECT_ROOT, "src", "category_keywords.json")
 
 if not os.path.exists(json_path):
     st.error(f"❌ No encuentro el JSON en: {json_path}")
