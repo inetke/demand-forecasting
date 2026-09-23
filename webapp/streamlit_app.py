@@ -13,7 +13,7 @@ import base64
 st.set_page_config(page_title="📦 FarmaCast", layout="wide")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-logo_path = os.path.join(BASE_DIR, "logo_farmacast.png")
+logo_path = os.path.join(BASE_DIR, "logo_streamlit.png")
 
 if os.path.exists(logo_path):
     with open(logo_path, "rb") as f:
