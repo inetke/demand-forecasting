@@ -6,6 +6,12 @@ Tendremos que encontrar un conjunto de datos adecuado para trabajar, procesarlo,
 </p>
  *"Hard work always beats talent when talent doesn't work hard"* - Tim Notke
 
+ ## 🚀 Live Demo
+
+Try the deployed application here:
+
+👉 [Open FarmaCast – Demand Forecasting App](https://farmacast-demand-forecasting.streamlit.app)
+
 ## 👥  Credits
 
 **Team Members:**
