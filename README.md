@@ -177,6 +177,12 @@ The forecasting workflow is deployed through an interactive **Streamlit applicat
 
 🚀 **[Open the Live Application](https://farmacast-demand-forecasting.streamlit.app)**
 
+### Application Interface
+
+The application provides a simple interface for selecting the forecasting mode, product, category and prediction horizon. Users can also upload new sales data when available.
+
+![FarmaCast application interface](docs/images/farmacast-interface.png)
+
 ### Main Features
 
 #### 📥 Upload & Update Sales Data
@@ -212,3 +218,18 @@ Forecasting results can be explored through:
 - Downloadable **CSV files** for further analysis or integration into other workflows
 
 The application was designed to make the forecasting output easier to interpret and use as an input for inventory and purchasing decisions.
+
+### Forecast Results
+
+#### Weekly Demand Forecast
+
+The application presents the predicted weekly demand together with summary indicators such as total forecasted demand, weekly average and peak-demand week.
+
+![FarmaCast weekly demand forecast](docs/images/farmacast-weekly-forecast.png)
+
+#### Historical Demand vs Forecast
+
+Historical sales and future predictions are displayed together to provide context for the forecast and make changes in expected demand easier to interpret.
+
+![FarmaCast historical demand vs forecast](docs/images/farmacast-history-vs-forecast.png)
+
