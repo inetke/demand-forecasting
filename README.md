@@ -1,294 +1,214 @@
-# Proyecto final Machine Learning
-<p align="justify">
-Este es el proyecto final de nuestro bootcamp de Machine Learning, donde demostramos las habilidades y conocimientos adquiridos a lo largo de nuestros estudios. A lo largo de este bootcamp, hemos estudiado diferentes modelos basados en proyectos de diferentes áreas y tipos. Ahora es el momento de crear nuestro propio proyecto utilizando el algoritmo que creemos que se adapta mejor a nuestro problema.
+# 💊 FarmaCast — Demand Forecasting for Pharmacy Inventory Planning
 
-Tendremos que encontrar un conjunto de datos adecuado para trabajar, procesarlo, entrenar un modelo y, finalmente, ponerlo a disposición para su consumo.
-</p>
- *"Hard work always beats talent when talent doesn't work hard"* - Tim Notke
+> Turning real pharmacy sales data into demand forecasts to support better inventory planning.
 
- ## 🚀 Live Demo
+🚀 **[Live Demo – FarmaCast](https://farmacast-demand-forecasting.streamlit.app)**
 
-Try the deployed application here:
+FarmaCast is an end-to-end Machine Learning project designed to forecast product demand and support inventory planning for a real pharmacy.
 
-👉 [Open FarmaCast – Demand Forecasting App](https://farmacast-demand-forecasting.streamlit.app)
+The project uses **117,415 real sales records from 2025**, covering more than **7,500 products**, to identify demand patterns and generate future demand forecasts.
 
-## 👥  Credits
+The solution covers the complete workflow from raw operational data to a deployed forecasting application: **data cleaning, exploratory analysis, feature engineering, model comparison, hyperparameter tuning, forecasting, and interactive visualization with Streamlit**.
 
-**Team Members:**
-> - Ineta Keryte
-> - Anthonny Maldonado
-> - Guillermo Mansanta
+### 📊 Key Results
 
-**Academy:** 
-> - [4Geeks Academy](https://4geeksacademy.com/us/index) 
-> - **Bootcamp:** Spain-DS-17 
-> - **Mentor:** [Ing. Héctor Chocobar Torrejón](https://github.com/hchocobar/)
-> - **Teacher Assitant:** [Beatriz Solana Ros](https://github.com/mezcolantriz)
+- **117,415** real sales records analyzed
+- **7,500+** different products
+- **CatBoost** selected as the final forecasting model
+- **R² Test: 0.72**
+- **RMSE Test: 4.71**
+- Interactive forecasts for **1, 2, 4 and 8 weeks**
+- Deployed **Streamlit application** for exploring and exporting predictions
 
-## 🎯 Objetivo del proyecto
-<p align="justify">
-- El objetivo de este proyecto es diseñar y entrenar un modelo de Machine Learning aplicado a la gestion farmaceutica, capaz de proyectar la demanda futura de cada producto de la farmacia para el año 2026, utilizando como base el histórico de ventas del año 2025. El modelo busca incorporar variables claves como la estacionalidad, el producto, el rubro, la presentación del producto y los patrones de consumo de los clientes, para estimar con mayor precisión cuántas unidades será necesario disponer en stock en cada período.
+---
 
-De esta manera, se apunta a transformar la gestión de inventario en un proceso proactivo y basado en datos, que permita optimizar los niveles de stock, reducir pérdidas por vencimientos, evitar quiebres de productos esenciales y mejorar la rentabilidad general del comercio.
-</p>
+## 🎯 Business Problem
 
-El objetivo de este proyecto es desarrollar una solución completa de Machine Learning de extremo a extremo que incluya:
-- Adquisición y procesamiento de datos
-- Análisis exploratorio de datos (EDA)
-- Desarrollo y optimización de modelos
-- Desarrollo de aplicaciones Web
-- Resolución de problemas del mundo real a través de técnicas de ML
+The project is based on a real pharmacy in Buenos Aires, Argentina, where inventory planning relied largely on staff experience, historical sales review, and manual decision-making.
 
-## 🚀 Introducción al proyecto
-<p align="justify">
-- Este proyecto tiene como objetivo aplicar técnicas de Machine Learning para mejorar la forma en que una farmacia gestiona su stock. A partir del análisis de las ventas de un año completo (2025) de una farmacia ubicada en la provincia de Buenos Aires, se busca entender cómo se comporta la demanda de los productos y usar esa información para planificar mejor el inventario del año 2026.
+This reactive approach makes it difficult to anticipate changes in product demand and can contribute to:
 
-  La idea principal es pasar de una gestión basada solo en la experiencia a una gestión basada en datos, que permita anticiparse a las necesidades de los clientes, evitar faltantes de productos importantes y reducir el exceso de mercadería en un contexto económico cambiante. Todo el enfoque está pensado desde la realidad del negocio farmacéutico y el comportamiento de consumo de las personas.*
-</p>
+- Stockouts of high-demand products
+- Excess inventory and products with low turnover
+- Inefficient use of working capital
+- More reactive purchasing and inventory decisions
 
-### Nuestro problema
-<p align="justify">
-- En el contexto macroeconómico argentino, atravesado por inflación, inestabilidad en los precios y restricciones en el acceso al financiamiento, la gestión de inventarios se convierte en un factor crítico para la sostenibilidad de cualquier farmacia. La falta de una planificación de stock basada en criterios técnicos y analíticos impacta directamente tanto en la rentabilidad del negocio como en la calidad del servicio prestado a la comunidad.
+The goal of FarmaCast is to use historical sales data to **forecast future product demand**, providing a data-driven input that can support inventory and purchasing decisions.
 
-Desde la perspectiva comercial, una mala política de inventarios genera una utilización ineficiente del capital de trabajo, con recursos financieros inmovilizados en mercadería de baja rotación o con riesgo de vencimiento. Esto incrementa los costos operativos, deteriora el flujo de caja y limita la capacidad de negociación con droguerías y laboratorios, afectando condiciones de pago, descuentos y líneas de crédito.
+Rather than attempting to calculate an "optimal stock" level directly, the model focuses on predicting expected demand. These forecasts can then be combined with additional business variables — such as current inventory, supplier lead times, safety stock policies, and purchasing constraints — to support inventory planning.
 
-Desde la perspectiva del servicio farmacéutico, los errores de planificación derivan en quiebres de stock de medicamentos esenciales, demoras en la atención, pérdida de continuidad en tratamientos y disminución de la confianza de los pacientes y clientes. La farmacia deja de ser percibida como un punto de referencia sanitario confiable y pasa a ser vista como un comercio reactivo e ineficiente.
+---
 
-En conjunto, la ausencia de una gestión profesional del inventario compromete simultáneamente la competitividad económica del negocio y su rol social como prestador de un servicio de salud.
+## 👩‍💻 My Contribution
 
-👉 Problema real: la farmacia no cuenta con una metodología objetiva para anticipar la demanda futura de sus productos.
+This was a collaborative project developed by a team of three. My main contributions were:
 
-🎯 Objetivo: desarrollar un modelo predictivo que permita estimar el stock óptimo por producto para el año 2026, en función del comportamiento histórico de ventas, estacionalidad, tipo de producto y patrones de consumo.
-</p>
+- Contributed to **data cleaning and exploratory data analysis (EDA)**. Each team member explored the data independently, and the findings were later consolidated into a shared final analysis.
+- Independently **experimented with and compared several Machine Learning models** during the model-selection phase, contributing to the team's evaluation of different forecasting approaches.
+- Took full ownership of the **Streamlit application**, designing and developing the complete user-facing layer of the project.
+- Implemented the workflow for **uploading new sales data, detecting duplicate records, updating the historical dataset, and recalculating temporal features** required for forecasting.
+- Built the application's **1, 2, 4 and 8-week forecasting workflows**, including product-level predictions and broader demand views.
+- Developed the **interactive visualizations and CSV export functionality**, making the forecasting results accessible and usable outside the modeling notebooks.
 
+My primary ownership in the project was the application layer: turning the team's Machine Learning work into an interactive tool that could be used to explore forecasts and support inventory planning.
 
+---
 
-## ➖ DATASET
-<p align="justify">
-- El dataset contiene información de registro de ventas durante el año 2025 de una farmacia situada en Argentina, en la provincia de Buenos Aires. El registro se corresponde a los datos de los tickets de venta generados durante todo el año, los días que el comercio estuvo abierto. Teniendo en cuenta que el comercio trabaja de Lunes a Sábados de 8hs a 20 hs, es decir, 12 hs por día, se han generado un total de datos tal que nuestro dataset contiene:
-</p>
+## 📊 Dataset
 
-🟤 117.415 filas
+The project uses **real transactional sales data from a pharmacy in Buenos Aires, Argentina**, covering sales activity throughout 2025.
 
-🟤 20 columnas, con variables categoricas y numericas como:   ['Fecha', 'Tipo Mov.', 'Fac. Tipo', 'Fac. Suc.', 'Fac. Nun.','Fisc. Numero', 'Tipo Pago', 'Cant.', 'Precio', 'Producto', 'Sub. Total', 'Rubro', 'Cobertura', 'Ajustes', 'Desc. Adic.', 'Total. Cliente', 'IVA', 'Tasa Iva', 'Total Gravado', 'Total sin Gravar'] 
+The original dataset contains:
 
-🟤 Más de 7.500 productos distintos
+- **117,415 sales records**
+- **20 numerical and categorical variables**
+- More than **7,500 unique products**
+- Products across pharmaceuticals, medical supplies, supplements, personal care and related categories
+- Transaction-level information including dates, quantities, prices, payment methods, product categories and sales totals
 
-🟤 Rubro farmacia (medicamentos, insumos médicos, suplementos, vitaminas, salud preventiva) y perfumería y cuidado personal (cremas, protectores, higiene). 
+### Data Quality Challenges
 
-- Se trata de un conjunto de datos reales, lo que implica la presencia de ruido, valores inconsistentes, formatos heterogéneos y registros incompletos, características habituales en fuentes operativas del sector farmacéutico. Esta naturaleza del dataset representó un desafío significativo durante la etapa de data cleaning, ya que fue necesario aplicar múltiples técnicas de depuración, normalización y validación para garantizar la calidad de los datos antes de avanzar con el análisis y el modelado.
+Because the data comes from a real operational system, the dataset contained many of the challenges commonly found in real-world business data:
 
+- Missing and inconsistent values
+- Duplicate records
+- Heterogeneous formats
+- Inconsistent text and product naming
+- Outliers and noisy transactional data
 
+Before modeling, the data went through a cleaning, normalization and validation process to create a more reliable dataset for exploratory analysis and demand forecasting.
 
+---
 
-## ➖ METODOLOGÍA 
+## ⚙️ Technical Approach
 
-🔸 *Importación de librerías y cargado de dataset*
+FarmaCast was developed as an end-to-end Machine Learning workflow, from raw operational data to an interactive forecasting application.
 
-🔸 *Análisis inicial de estructura de dataframe, tipo de variables y calidad*
+### 1. Data Ingestion & Storage
 
-🔸 *Limpieza de datos nulos, duplicados, vacíos y outliers*
+The original sales data came from a real pharmacy management system and was exported as encrypted Excel files.
 
-🔸 *Renombrado y orden de columnas*
+The data was decrypted, converted to CSV and processed with **Python and Pandas**. A **SQLite database** was also used during the project to store and query the data using SQL.
 
-🔸 *Transformaciones de columnas: nuevas columnas y asignaciones grupales*
+### 2. Data Cleaning & Validation
 
-🔸 *Análisis Exploratorio (EDA)*
+The raw transactional data required extensive preprocessing before it could be used for analysis and modeling.
 
-🔸 *Visualizaciones*
+The process included:
 
-🔸 *Guardado de resultados y observaciones del análisis*
+- Handling missing and duplicate records
+- Standardizing text and product names
+- Converting and validating date fields
+- Reviewing inconsistent values and outliers
+- Creating a cleaner and more consistent analytical dataset
 
-🔸 *Normalización, encoding de datos y separación train/test*
+### 3. Exploratory Data Analysis
 
-🔸 *Creación y prueba de distintos modelos*
+EDA was used to understand sales behavior and identify patterns relevant to demand forecasting.
 
-🔸 *Entrenamiento de modelo*
+The analysis included:
 
-🔸 *Hiperparametrización del modelo*
+- Product sales frequency and distribution
+- Temporal demand patterns
+- Product and category-level behavior
+- Descriptive statistics and outlier analysis
+- Visual exploration of sales trends
 
-🔸 *Calculo de precisión y errores*
+### 4. Feature Engineering & Temporal Splitting
 
-🔸 *Optimización de EDA*
+The cleaned data was transformed into a modeling dataset with temporal and product-level features.
 
-🔸 *Nuevos entrenamientos de modelo y optimización del modelo elegido*
+Because this is a forecasting problem, the data was split **chronologically rather than randomly**, preserving the temporal order of the observations.
 
-🔸 *Creación y uso de url con Streamlit*
+The modeling workflow uses separate **training, validation and test periods** so that validation can be used during model development while the test period remains reserved for evaluating performance on later observations.
 
-🔸 *Prueba real como usuario externo*
+### 5. Model Experimentation
 
+Several regression algorithms were explored for the forecasting task, including:
 
-## 📝 FASES DE PROYECTO
-
-### 🔽 Paso 1: Definición de nuestro problema
-
- Actualmente, la farmacia gestiona su stock principalmente a partir de la experiencia del personal, la intuición comercial y el análisis manual de ventas pasadas. Si bien este enfoque puede funcionar en escenarios estables, resulta insuficiente en un contexto dinámico y volátil como el argentino, donde los hábitos de consumo, los precios y la disponibilidad de productos cambian de forma constante.
-
- La ausencia de una metodología analítica y sistematizada para prever la demanda futura genera decisiones reactivas en lugar de estratégicas; esto genera:
-
-❌ Quiebres de stock en productos críticos
-
-❌ Sobrestock en productos de baja rotación
-
-❌ Uso ineficiente del capital de trabajo
- 
- - En definitiva, la farmacia no dispone hoy de una herramienta objetiva, basada en datos, que le permita anticiparse a las necesidades reales de sus pacientes y clientes.*
-
-
-### 🔽 Paso 2: Adquisición y carga de datos
-
-- Los datos provienen de un software real utilizado en farmacias argentinas:
-✔️ El sistema exporta archivos en formato Excel encriptado. Se realizó un proceso previo de desencriptado y conversión a CSV.
-✔️ Luego se cargaron en Python usando Pandas creando un Dataframe.
-
-- En esta etapa se inspeccionaron columnas, verificaron tipos de datos y se evaluó la calidad inicial (nulos, duplicados).
-
-👉 Resultado: un dataset crudo listo para limpieza y análisis.
-
-### 🔽 Paso 3: Almacenamiento de datos
-
-- Los datos fueron almacenados en una base de datos SQLite para facilitar su acceso, seguridad y reutilización.
-
-- Desde Python se ejecutaron consultas SQL (SELECT, GROUP BY, WHERE) para generar vistas preliminares que sirvieron como base para el análisis exploratorio.
-
-### 🔽 Paso 4: Realización de análisis descriptivo
-
-En esta etapa se trabajó con estadísticas básicas y descriptivas para entender las principales variables del dataset:
-
-✔️ Frecuencia de productos.
-✔️ Distribuciones de ventas.
-✔️ Medidas de tendencia central (media, mediana, moda).
-✔️ Dispersión (desvío estándar) y comportamientos atípicos.
-
-
-### 🔽 Paso 5: Full EDA
-
-Análisis Exploratorio de Datos (EDA)
-
-- Limpieza: eliminación de duplicados y nulos, normalización de texto (sin acentos, minúsculas, sin símbolos).
-- Transformación: conversión de fechas, creación de variables (año, mes, día).
-- Exploración: investigación, consultas al personal de farmacia, productos más vendidos, patrones por mes, comparaciones por categorías.
-- Visualizaiones: gráficos de barras, histogramas y análisis temporal.
-
-### 🔽 Paso 6: Creación de modelo y optimización de parámetros
-
-🔸 Selección del modelo
-- Inicialmente se eligió Random Forest por intuición y buen desempeño esperado.
-- El objetivo era establecer métricas base para luego comparar con otros modelos.
-
-🔸 Estrategia de partición (Train/Test)
-- División inicial: 80% Train / 20% Test.
-- Como los datos están organizados por semanas, una división aleatoria podía dejar productos en Test que no existieran en Train.
-- Se realizó el split por bloques de semanas, garantizando que cada semana (en Train o Test) contenga todos los productos evaluados.
-
-🔸 Primer modelo sin hiperparámetros (Random Forest)
-- RMSE: 4.95
-- R² Test: 69%
-- R² Train: 96%
-  - Se detectó overfitting, esperado en Random Forest sin ajuste fino.
-
-🔸 Optimización de hiperparámetros (Random Forest)
-- Primero se aplicó RandomizedSearchCV.
-- Luego se afinó con GridSearchCV usando los mejores valores encontrados.
-- - Modelo optimizado:
-  -  R² Train: 85%
-  -  R² Test: 70%
-  -  RMSE: 4.87
-
-🔸 Prueba de otros modelos
-- Se evaluaron modelos alternativos.
-- Se seleccionó CatBoost como candidato principal.
-
-✔️ Modelo final (CatBoost ajustado)
-- R² Test: 72%
-- RMSE: 4.70
-- Mejora respecto a Random Forest en capacidad de generalización.
-
-
-
-### 🔽 Paso 7: Visualización e interacción con el modelo - Streamlit
-- Flujo de la aplicación de Streamlit  
-
-🔸 Carga de datos en tiempo real
-   - El usuario sube archivos CSV con ventas recientes. La app ejecuta automáticamente procesos de:
-   - Limpieza de datos
-   - Normalización de texto
-   - Asignación de categorías mediante un diccionario inteligente (JSON) desarrollado durante el EDA  
-
-🔸 Actualización inteligente del histórico
-- La aplicación detecta si los datos cargados son nuevos o duplicados. En función de eso:
-- Actualiza el histórico de ventas
-- Recalcula variables temporales (lags)
-- Garantiza que las predicciones usen siempre la información más reciente
-
-
-🔸Generación de predicciones (Forecasting)
-- La app permite dos modos de análisis:
-    - Modo Individual: selección de un producto y predicción de demanda a 1, 2, 4 u 8 semanas
-    - Modo Global: ranking de productos con mayor demanda proyectada por grupo o categoría
-
-
-🔸 Visualización interactiva de resultados
-- Los resultados se muestran de forma clara mediante:
-- Gráficos de series temporales
-- Tablas comparativas por producto, grupo o categoría
-
-
-🔸Exportación de resultados
-- El usuario puede descargar las predicciones en formato CSV para:
-- Integrarlas en sistemas de gestión internos
-- Facilitar decisiones de compra y stock
-
-
-
-## 📁 Estructura de proyecto
-
-```
-sp-ml-20-final-project-g2/
-├── 📁 data/                # Raw and processed datasets
-│    ├── 📁 interin/        # For intermediate data that has been transformed.
-│    ├── 📁 processed/      # For the final data to be used for modeling.
-          ├──df.pkl
-│    ├── 📁 raw/            # For raw data without any processing.
-          ├──farmacia-datos.db
-├── 📁 database/            # SQL scripts and database configs
-├── 📁 models/              # Trained model artifacts
-     ├──72_Cat_Boost_Regressor.pkl
-├── 📁 src/                 # Source code modules
-     ├──category_keywords.json
-     ├──EDA.ipynb
-├── 📁 webapp/              # Streamlit application
-     ├──logo_farmacast.png
-     ├──streamlit_app.py
-├── README.md
-├── requirements.txt
-```
-
-## 🛠️ Tecnologías utilizadas
-
-- Excel
-- Python
-- Pandas
-- NumPy
-- Scikit-learn
-- Matplotlib
-- Seaborn
-- SQLite
-- Randomforest
+- Random Forest
 - XGBoost
+- LightGBM
 - CatBoost
-- Streamlit
 
-## 📊 Resultados
+The experiments were used to compare different approaches and understand their generalization behavior before continuing with **CatBoost** for further hyperparameter tuning and evaluation.
 
-✔️ Modelo final (CatBoost ajustado)
-- R² Test: 72%
-- RMSE: 4.70
-- Mejora respecto a Random Forest en capacidad de generalización.
+### 6. Application Layer
 
+The final forecasting workflow was integrated into a **Streamlit application**, allowing users to upload recent sales data, generate forecasts, explore results visually and export predictions for further use.
 
-## 🧠 Valor del Proyecto
+---
 
-✔️ Conecta datos reales con problemas reales
-✔️ Tiene pipeline profesional (CSV → DB → EDA)
-✔️ Apunta a solución de negocio 
+## 📈 Model Evaluation
+
+Several regression models were compared to evaluate their ability to generalize to later time periods.
+
+| Model | RMSE (Test) | R² (Train) | R² (Test) |
+|---|---:|---:|---:|
+| Random Forest | 4.98 | 0.96 | 0.68 |
+| XGBoost | 4.82 | 0.87 | 0.70 |
+| LightGBM | 5.47 | 0.90 | 0.62 |
+| CatBoost | 4.82 | 0.87 | 0.70 |
+
+In the initial comparison, **XGBoost and CatBoost achieved similar test performance**, while Random Forest showed a larger gap between training and test results.
+
+CatBoost was selected for the next stage of the project. One practical advantage was its ability to work directly with categorical features such as `product`, avoiding the need for One-Hot Encoding within the modeling pipeline.
+
+### Hyperparameter Tuning
+
+CatBoost was subsequently tuned using randomized hyperparameter sampling and a separate validation period for model selection and early stopping.
+
+The best-performing configuration was then evaluated on the test period:
+
+- **R² Train:** 0.77
+- **R² Test:** 0.72
+- **RMSE Test:** 4.71
+- **MSE Test:** 22.15
+
+These results indicate that the final model retained most of its predictive performance when evaluated on later observations that were not used for training.
+
+The trained CatBoost model is saved as a reusable `.pkl` artifact and integrated into the Streamlit forecasting application.
+
+---
+
+## 🖥️ Streamlit Application
+
+The forecasting workflow is deployed through an interactive **Streamlit application**, turning the Machine Learning model into a tool that can be used without interacting directly with the underlying notebooks or code.
+
+🚀 **[Open the Live Application](https://farmacast-demand-forecasting.streamlit.app)**
+
+### Main Features
+
+#### 📥 Upload & Update Sales Data
+
+Users can upload new sales data in CSV format. The application automatically:
+
+- Cleans and normalizes the uploaded data
+- Detects new and duplicate records
+- Updates the historical sales dataset
+- Recalculates the temporal features required by the forecasting pipeline
+
+#### 🔮 Demand Forecasting
+
+The application provides two forecasting modes:
+
+**Individual Forecast**
+- Select a specific product
+- Generate demand forecasts for **1, 2, 4 or 8 weeks**
+- Explore the expected demand through interactive visualizations
+
+**Global Forecast**
+- Explore projected demand across multiple products
+- Analyze products by group or category
+- Identify products with higher projected demand
+
+#### 📊 Visualization & Export
+
+Forecasting results can be explored through:
+
+- Time-series visualizations
+- Product and category-level views
+- Comparative prediction tables
+- Downloadable **CSV files** for further analysis or integration into other workflows
+
+The application was designed to make the forecasting output easier to interpret and use as an input for inventory and purchasing decisions.
