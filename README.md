@@ -78,6 +78,12 @@ Because the data comes from a real operational system, the dataset contained man
 
 Before modeling, the data went through a cleaning, normalization and validation process to create a more reliable dataset for exploratory analysis and demand forecasting.
 
+### 🔒 Data Privacy
+
+This project was developed using real operational sales data from a pharmacy.
+
+To protect confidential business information, the original transactional dataset and database are **not distributed publicly** in this repository. The repository contains the code, modeling workflow, trained model artifacts, and application components required to demonstrate the project.
+
 ---
 
 ## ⚙️ Technical Approach
@@ -120,7 +126,7 @@ The cleaned data was transformed into a modeling dataset with temporal and produ
 
 Because this is a forecasting problem, the data was split **chronologically rather than randomly**, preserving the temporal order of the observations.
 
-The modeling workflow uses separate **training, validation and test periods** so that validation can be used during model development while the test period remains reserved for evaluating performance on later observations.
+The modeling workflow uses separate **training, validation and test periods**, preserving temporal order and allowing model behavior to be evaluated on later observations.
 
 ### 5. Model Experimentation
 
@@ -158,7 +164,7 @@ CatBoost was selected for the next stage of the project. One practical advantage
 
 CatBoost was subsequently tuned using randomized hyperparameter sampling and a separate validation period for model selection and early stopping.
 
-The best-performing configuration was then evaluated on the test period:
+The best-performing CatBoost configuration based on validation performance was then evaluated on the later test period:
 
 - **R² Train:** 0.77
 - **R² Test:** 0.72
@@ -168,6 +174,22 @@ The best-performing configuration was then evaluated on the test period:
 These results indicate that the final model retained most of its predictive performance when evaluated on later observations that were not used for training.
 
 The trained CatBoost model is saved as a reusable `.pkl` artifact and integrated into the Streamlit forecasting application.
+
+---
+
+## ⚠️ Limitations
+
+FarmaCast is a demand forecasting project and should not be interpreted as a complete inventory optimization system.
+
+Key limitations include:
+
+- The model was trained using approximately one year of historical sales data, which limits its ability to learn longer-term seasonal patterns.
+- Forecasts are based primarily on historical sales behavior and the features available in the dataset.
+- The forecasts are limited by the information available in the historical sales dataset and cannot capture future events that are not represented in the data.
+- Longer forecasting horizons involve greater uncertainty, particularly when predictions depend on previously generated temporal features.
+- Demand forecasts alone do not determine optimal inventory levels. Operational variables such as current stock, supplier lead times, safety stock and purchasing constraints would also be required.
+
+For these reasons, the forecasts are designed to provide **decision-support information** rather than automated purchasing recommendations.
 
 ---
 
@@ -233,3 +255,114 @@ Historical sales and future predictions are displayed together to provide contex
 
 ![FarmaCast historical demand vs forecast](docs/images/farmacast-history-vs-forecast.png)
 
+---
+
+## 🚀 Running the Project Locally
+
+### Requirements
+
+- Python 3.13
+- Git
+
+> **macOS note:** LightGBM may require OpenMP. If needed, install it with Homebrew using `brew install libomp`.
+
+### Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/inetke/demand-forecasting.git
+cd demand-forecasting
+```
+
+Create and activate a virtual environment:
+
+```bash
+python3.13 -m venv .venv
+source .venv/bin/activate
+```
+
+Install the project dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the Streamlit application:
+
+```bash
+streamlit run webapp/streamlit_app.py
+```
+
+The application will open locally in your browser.
+
+---
+
+## 📁 Project Structure
+
+```text
+demand-forecasting/
+├── data/                         # Data documentation
+├── database/                     # Database documentation
+├── docs/
+│   └── images/                   # Application screenshots
+├── models/
+│   ├── 71_random_forest_regressor.pkl
+│   └── 72_Cat_Boost_Regressor.pkl
+├── src/
+│   ├── EDA.ipynb                 # Data cleaning and exploratory analysis
+│   ├── seleccion_modelo.ipynb    # Model comparison and selection
+│   ├── RandomForestRegressor.ipynb
+│   ├── catboost.ipynb            # CatBoost tuning and final evaluation
+│   └── category_keywords.json
+├── webapp/
+│   ├── streamlit_app.py          # Streamlit application
+│   └── logo_streamlit.png
+├── .env.example
+├── requirements.txt
+└── README.md
+
+---
+
+## 🛠️ Technologies
+
+**Data & Analysis**
+- Python
+- Pandas
+- NumPy
+- SQL / SQLite
+- Excel
+- Matplotlib
+- Seaborn
+
+**Machine Learning**
+- Scikit-learn
+- Random Forest
+- XGBoost
+- LightGBM
+- CatBoost
+
+**Application & Development**
+- Streamlit
+- Git
+- GitHub
+- Jupyter Notebook
+
+---
+
+## 👥 Team & Credits
+
+FarmaCast was developed as a collaborative final project for the **Data Science & Machine Learning program at 4Geeks Academy**.
+
+### Team
+
+- **Ineta Keryte**
+- Anthonny Maldonado
+- Guillermo Mansanta
+
+### Academic Support
+
+- **Academy:** [4Geeks Academy](https://4geeksacademy.com/)
+- **Bootcamp:** Spain-DS-17
+- **Mentor:** [Héctor Chocobar Torrejón](https://github.com/hchocobar/)
+- **Teaching Assistant:** [Beatriz Solana Ros](https://github.com/mezcolantriz)

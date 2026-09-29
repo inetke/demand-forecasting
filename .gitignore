@@ -259,3 +259,7 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Private operational data
+data/raw/*.csv
+*.db
